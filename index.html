@@ -3,182 +3,338 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dr. Amar Rao — Academic Portfolio</title>
+  <title>Dr. Amar Rao — Finance & Econometrics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --white:  #ffffff;
-      --off:    #f5f5f7;
-      --text:   #1d1d1f;
-      --muted:  #6e6e73;
-      --border: rgba(0,0,0,0.08);
-      --blue:   #0071e3;
-      --purple: #bf5af2;
-      --pink:   #ff375f;
-      --orange: #ff9f0a;
-      --green:  #30d158;
-      --teal:   #5ac8fa;
-      --yellow: #ffd60a;
-      --nav-w:  240px;
+      --bg:       #fafaf8;
+      --white:    #ffffff;
+      --ink:      #1c1c1e;
+      --mid:      #4a4a4e;
+      --muted:    #8a8a8e;
+      --rule:     rgba(0,0,0,0.09);
+      --accent:   #14397a;
+      --accent-l: rgba(20,57,122,0.07);
+      --nav-w:    230px;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--off); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.75; }
-    a { color: var(--blue); text-decoration: none; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* ── SIDEBAR ─────────────────────────────────── */
     nav {
-      width: var(--nav-w); position: fixed; top: 0; left: 0; bottom: 0;
-      background: var(--white); border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; padding: 48px 28px; z-index: 100;
+      width: var(--nav-w);
+      position: fixed; top: 0; left: 0; bottom: 0;
+      background: var(--white);
+      border-right: 1px solid var(--rule);
+      display: flex; flex-direction: column;
+      padding: 52px 32px;
+      z-index: 100;
     }
-    .nav-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-    .nav-role { font-size: 0.72rem; color: var(--muted); line-height: 1.4; margin-bottom: 40px; }
-    .nav-links { list-style: none; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .nav-monogram {
+      width: 44px; height: 44px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .nav-sub {
+      font-size: 0.73rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 44px;
+    }
+    .nav-links { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 2px; }
     .nav-links a {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.82rem; font-weight: 500; color: var(--muted);
-      padding: 9px 12px; border-radius: 10px; transition: all 0.2s; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: all 0.18s;
+      text-decoration: none;
     }
-    .nav-links a:hover, .nav-links a.active { background: var(--off); color: var(--text); }
-    .nav-pip { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; transition: transform 0.2s; }
-    .nav-links a.active .nav-pip { transform: scale(1.4); }
-    .pip-home { background: var(--blue); }
-    .pip-about { background: var(--purple); }
-    .pip-research { background: var(--pink); }
-    .pip-teaching { background: var(--orange); }
-    .pip-contact { background: var(--green); }
+    .nav-links a:hover { color: var(--ink); background: var(--accent-l); }
+    .nav-links a.active { color: var(--accent); background: var(--accent-l); }
+    .nav-tick {
+      width: 3px; height: 14px;
+      border-radius: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+    .nav-links a.active .nav-tick { opacity: 1; }
 
-    main { margin-left: var(--nav-w); padding: 0 60px 120px; max-width: 900px; }
+    /* ── MAIN ────────────────────────────────────── */
+    main { margin-left: var(--nav-w); padding: 0 72px 140px; max-width: 860px; }
 
-    section { padding-top: 100px; opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    section {
+      padding-top: 96px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
     section.visible { opacity: 1; transform: none; }
 
-    .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
-    h2 { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 32px; }
+    /* ── TYPOGRAPHY ──────────────────────────────── */
+    .eyebrow {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: 2.4rem; font-weight: 600;
+      line-height: 1.2; letter-spacing: -0.01em;
+      color: var(--ink); margin-bottom: 32px;
+    }
+    h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--ink);
+    }
 
-    /* HERO */
+    /* ── HERO ────────────────────────────────────── */
     #hero { padding-top: 100px; opacity: 1; transform: none; }
-    .hero-card {
-      background: var(--white); border-radius: 24px; padding: 56px 52px;
-      position: relative; overflow: hidden;
+    .hero-inner { display: flex; align-items: flex-start; gap: 52px; }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 148px; height: 148px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--rule);
     }
-    .hero-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
-      background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 20%, var(--pink) 38%, var(--orange) 55%, var(--yellow) 72%, var(--green) 88%, var(--teal) 100%);
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-content { flex: 1; }
+
+    .hero-rule {
+      width: 48px; height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 28px;
     }
-    .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
-    .hero-name { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
-    .hero-role { font-size: 1rem; color: var(--muted); line-height: 1.6; max-width: 460px; margin-bottom: 36px; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { font-size: 0.75rem; font-weight: 500; padding: 5px 14px; border-radius: 100px; }
-    .tag-blue   { background: rgba(0,113,227,0.1);  color: #0055b3; }
-    .tag-purple { background: rgba(191,90,242,0.1); color: #9b3dd6; }
-    .tag-pink   { background: rgba(255,55,95,0.1);  color: #cc1f46; }
-    .tag-orange { background: rgba(255,159,10,0.1); color: #c97800; }
-    .tag-green  { background: rgba(48,209,88,0.1);  color: #1a9e46; }
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: 1rem; font-weight: 400;
+      color: var(--mid); margin-bottom: 8px;
+    }
+    .hero-inst {
+      font-size: 0.88rem; color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .hero-keywords {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 56px;
+    }
+    .kw {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--accent);
+      border: 1px solid rgba(20,57,122,0.25);
+      padding: 4px 13px; border-radius: 3px;
+      letter-spacing: 0.02em;
+    }
 
-    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
-    .stat-card { background: var(--white); border-radius: 18px; padding: 28px 24px; text-align: center; }
-    .stat-number { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; line-height: 1; margin-bottom: 6px; }
-    .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
-    .stat-blue .stat-number { color: var(--blue); }
-    .stat-purple .stat-number { color: var(--purple); }
-    .stat-pink .stat-number { color: var(--pink); }
+    /* stats inline */
+    .hero-stats {
+      display: flex; gap: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 32px;
+    }
+    .stat-item {
+      flex: 1;
+      padding-right: 32px;
+      border-right: 1px solid var(--rule);
+      margin-right: 32px;
+    }
+    .stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .stat-n {
+      font-family: 'Lora', serif;
+      font-size: 2rem; font-weight: 600;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-l { font-size: 0.75rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
 
-    /* ABOUT */
-    .about-body { background: var(--white); border-radius: 20px; padding: 40px; margin-bottom: 16px; }
-    .about-body p { color: var(--muted); margin-bottom: 14px; font-size: 0.95rem; }
-    .about-body p strong { color: var(--text); }
-    .about-body p:last-child { margin-bottom: 0; }
-    .about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .about-card { background: var(--white); border-radius: 18px; padding: 28px; }
-    .about-card-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
-    .about-card ul { list-style: none; }
-    .about-card li { font-size: 0.85rem; color: var(--muted); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-    .about-card li:last-child { border: none; }
-    .about-card li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .li-blue::before { background: var(--blue); }
-    .li-purple::before { background: var(--purple); }
-    .li-orange::before { background: var(--orange); }
-    .li-green::before { background: var(--green); }
+    /* ── ABOUT ───────────────────────────────────── */
+    .about-text {
+      font-size: 0.97rem; color: var(--mid);
+      line-height: 1.8; margin-bottom: 36px;
+    }
+    .about-text p { margin-bottom: 14px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 600; }
 
-    /* RESEARCH */
-    .interest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
-    .interest-card { background: var(--white); border-radius: 18px; padding: 24px; transition: transform 0.2s; }
-    .interest-card:hover { transform: translateY(-3px); }
-    .interest-top { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 14px; }
-    .i-blue .interest-top { background: rgba(0,113,227,0.1); }
-    .i-purple .interest-top { background: rgba(191,90,242,0.1); }
-    .i-pink .interest-top { background: rgba(255,55,95,0.1); }
-    .i-orange .interest-top { background: rgba(255,159,10,0.1); }
-    .i-green .interest-top { background: rgba(48,209,88,0.1); }
-    .i-teal .interest-top { background: rgba(90,200,250,0.1); }
-    .interest-card h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
-    .interest-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .info-block {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 24px 26px;
+      background: var(--white);
+    }
+    .info-block-label {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .info-block ul { list-style: none; }
+    .info-block li {
+      font-size: 0.85rem; color: var(--mid);
+      padding: 5px 0; border-bottom: 1px solid var(--rule);
+    }
+    .info-block li:last-child { border-bottom: none; }
+    .info-block li strong { color: var(--ink); font-weight: 600; }
 
-    .pub-list { display: flex; flex-direction: column; gap: 10px; }
-    .pub-item { background: var(--white); border-radius: 16px; padding: 20px 24px; display: flex; gap: 18px; align-items: flex-start; transition: transform 0.2s; }
-    .pub-item:hover { transform: translateX(4px); }
-    .pub-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; line-height: 1; min-width: 34px; margin-top: 2px; }
-    .pub-body h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 3px; line-height: 1.4; }
-    .pub-body p { font-size: 0.78rem; color: var(--muted); }
-    .pub-item:nth-child(6n+1) .pub-num { color: var(--blue); }
-    .pub-item:nth-child(6n+2) .pub-num { color: var(--purple); }
-    .pub-item:nth-child(6n+3) .pub-num { color: var(--pink); }
-    .pub-item:nth-child(6n+4) .pub-num { color: var(--orange); }
-    .pub-item:nth-child(6n+5) .pub-num { color: var(--green); }
-    .pub-item:nth-child(6n+6) .pub-num { color: var(--teal); }
+    /* ── RESEARCH INTERESTS ──────────────────────── */
+    .interest-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-bottom: 52px;
+    }
+    .int-card {
+      border: 1px solid var(--rule);
+      border-radius: 8px; padding: 20px 22px;
+      background: var(--white);
+      transition: border-color 0.18s;
+    }
+    .int-card:hover { border-color: rgba(20,57,122,0.3); }
+    .int-card h4 {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 6px;
+    }
+    .int-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
-    /* TEACHING */
-    .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .course-card { background: var(--white); border-radius: 18px; padding: 26px; transition: transform 0.2s; }
-    .course-card:hover { transform: translateY(-3px); }
-    .course-stripe { width: 32px; height: 4px; border-radius: 2px; margin-bottom: 16px; }
-    .course-level { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-    .course-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; }
-    .course-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-    .c1 .course-stripe { background: var(--blue); }
-    .c2 .course-stripe { background: var(--purple); }
-    .c3 .course-stripe { background: var(--pink); }
-    .c4 .course-stripe { background: var(--orange); }
-    .c1 .course-level { color: var(--blue); }
-    .c2 .course-level { color: var(--purple); }
-    .c3 .course-level { color: var(--pink); }
-    .c4 .course-level { color: var(--orange); }
-    .teaching-note { margin-top: 16px; background: var(--white); border-radius: 18px; padding: 28px 32px; font-size: 0.9rem; color: var(--muted); }
-    .teaching-note strong { color: var(--text); }
+    /* ── PUBLICATIONS ────────────────────────────── */
+    .pub-list { display: flex; flex-direction: column; }
+    .pub-item {
+      display: flex; gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+    .pub-item:first-child { border-top: 1px solid var(--rule); }
+    .pub-item:hover { padding-left: 10px; margin-left: -10px; padding-right: 10px; background: var(--white); border-radius: 4px; border-color: transparent; }
+    .pub-n {
+      font-family: 'Lora', serif;
+      font-size: 0.75rem; color: var(--muted);
+      min-width: 24px; padding-top: 3px;
+      font-style: italic;
+    }
+    .pub-content h3 {
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 3px;
+      line-height: 1.45;
+    }
+    .pub-meta { font-size: 0.78rem; color: var(--muted); }
 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .contact-card { background: var(--white); border-radius: 18px; padding: 26px; display: flex; align-items: flex-start; gap: 16px; transition: transform 0.2s; }
-    .contact-card:hover { transform: translateY(-2px); }
-    .contact-icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
-    .ci-blue { background: rgba(0,113,227,0.1); }
-    .ci-purple { background: rgba(191,90,242,0.1); }
-    .ci-green { background: rgba(48,209,88,0.1); }
-    .ci-orange { background: rgba(255,159,10,0.1); }
-    .contact-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .contact-value { font-size: 0.88rem; color: var(--text); word-break: break-all; }
+    /* ── TEACHING ────────────────────────────────── */
+    .course-list { display: flex; flex-direction: column; gap: 0; }
+    .course-item {
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 24px; padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .course-item:first-child { border-top: 1px solid var(--rule); }
+    .course-tag {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .course-item h3 { font-size: 0.93rem; margin-bottom: 4px; }
+    .course-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
 
-    footer { margin-left: var(--nav-w); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--border); }
+    .teaching-note {
+      margin-top: 32px;
+      padding: 24px 28px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-l);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.9rem; color: var(--mid);
+      font-style: italic;
+    }
+    .teaching-note strong { color: var(--ink); font-style: normal; }
 
-    .hamburger { display: none; position: fixed; top: 16px; left: 16px; z-index: 200; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 10px 13px; font-size: 1rem; cursor: pointer; }
+    /* ── CONTACT ─────────────────────────────────── */
+    .contact-intro { font-size: 0.97rem; color: var(--mid); margin-bottom: 36px; max-width: 500px; }
+    .contact-list { display: flex; flex-direction: column; }
+    .contact-row {
+      display: grid; grid-template-columns: 140px 1fr;
+      gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: center;
+    }
+    .contact-row:first-child { border-top: 1px solid var(--rule); }
+    .contact-key {
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contact-val { font-size: 0.9rem; color: var(--ink); }
 
-    @media (max-width: 800px) {
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      margin-left: var(--nav-w);
+      padding: 28px 72px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    /* ── MOBILE ──────────────────────────────────── */
+    .hamburger {
+      display: none; position: fixed;
+      top: 16px; left: 16px; z-index: 200;
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 6px; padding: 9px 12px;
+      font-size: 1rem; cursor: pointer;
+    }
+    @media (max-width: 820px) {
       nav { transform: translateX(-100%); transition: transform 0.3s; }
       nav.open { transform: none; }
       .hamburger { display: block; }
-      main { margin-left: 0; padding: 64px 20px 80px; }
-      footer { margin-left: 0; padding: 20px; flex-direction: column; gap: 6px; text-align: center; }
-      .about-cards, .course-grid, .contact-grid { grid-template-columns: 1fr; }
-      .interest-grid, .stat-row { grid-template-columns: 1fr 1fr; }
+      main { margin-left: 0; padding: 64px 24px 80px; }
+      footer { margin-left: 0; padding: 20px 24px; flex-direction: column; gap: 4px; }
+      .info-row { grid-template-columns: 1fr; }
+      .interest-grid { grid-template-columns: 1fr 1fr; }
+      .course-item { grid-template-columns: 1fr; gap: 4px; }
       h2 { font-size: 2rem; }
+      .hero-stats { flex-direction: column; gap: 20px; }
+      .stat-item { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 20px; }
+      .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
     }
     @media (max-width: 480px) {
-      .interest-grid, .stat-row { grid-template-columns: 1fr; }
-      .hero-card { padding: 36px 24px; }
+      .interest-grid { grid-template-columns: 1fr; }
+      .contact-row { grid-template-columns: 1fr; gap: 2px; }
     }
   </style>
 </head>
@@ -187,116 +343,148 @@
 <button class="hamburger" id="hamburger">☰</button>
 
 <nav id="sidebar">
+  <div class="nav-monogram">AR</div>
   <div class="nav-name">Dr. Amar Rao</div>
-  <div class="nav-role">Associate Professor (Ph.D.)<br>BML Munjal University</div>
+  <div class="nav-sub">Associate Professor (Ph.D.)<br>BML Munjal University</div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#hero"     class="active"><span class="nav-pip pip-home"></span>Home</a></li>
-    <li><a href="#about"            ><span class="nav-pip pip-about"></span>About</a></li>
-    <li><a href="#research"         ><span class="nav-pip pip-research"></span>Research</a></li>
-    <li><a href="#teaching"         ><span class="nav-pip pip-teaching"></span>Teaching</a></li>
-    <li><a href="#contact"          ><span class="nav-pip pip-contact"></span>Contact</a></li>
+    <li><a href="#hero"     class="active"><span class="nav-tick"></span>Home</a></li>
+    <li><a href="#about"            ><span class="nav-tick"></span>About</a></li>
+    <li><a href="#research"         ><span class="nav-tick"></span>Research</a></li>
+    <li><a href="#teaching"         ><span class="nav-tick"></span>Teaching</a></li>
+    <li><a href="#contact"          ><span class="nav-tick"></span>Contact</a></li>
   </ul>
 </nav>
 
 <main>
 
+  <!-- HERO -->
   <section id="hero">
-    <div class="hero-card">
-      <p class="hero-eyebrow">Academic Portfolio</p>
-      <h1 class="hero-name">Dr. Amar Rao</h1>
-      <p class="hero-role">Associate Professor · Finance &amp; Econometrics<br>BML Munjal University, Gurugram</p>
-      <div class="hero-tags">
-        <span class="tag tag-blue">Empirical Finance</span>
-        <span class="tag tag-purple">Econometrics</span>
-        <span class="tag tag-pink">Capital Markets</span>
-        <span class="tag tag-orange">Quantitative Methods</span>
-        <span class="tag tag-green">Data Analytics</span>
+    <div class="hero-inner">
+      <div class="hero-photo">
+        <img src="data:image/jpeg;base64,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iICIiAiIgIQCLEAj1REGu+lYTdnh9OS1KinkbqW3FtwpNFWaxKdoUbm6vtopR8Ub/MwE9eawuo4/ylzVXwlO1mEYnWYTXMrKKUse3fo4dCvXOFeN6bGGNilf3M4tdhdqfZeQvonHyvB91jZS1cMrZYXZXtNw5rrELnzcaMn9t8PItinr0+qcGjZPDnu4X2INipaoo6Oiw59VWVUUULReSSY5Q0f9XJeH8IdpdZhWEOgxChdU1EYtFlcAH+/RcnxnxXxNxXPfE6h3w7TeOmjOWJvyvqfUrzK8DLa2p6h6lvqGOtOu5d1xz2tU1PLLScMxCqeLt+Jlb+GPVo3PubLx7FK+txSvfWYhUyVFRITme83+Q6eyv+BmO1h7lXNw5580oHsLr08PHrjj8YeVm5F8s/lLRCyxuOy32YfCPM5zvTYLYjhij8kbR62W/gx2hpaCeaUPjYG5vMToAVuU2FRR2dM7vHdNgpBFeKxCNqNa1rQ1oAA2ACqiKyBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH/2Q==" alt="Dr. Amar Rao"/>
+      </div>
+      <div class="hero-content">
+        <div class="hero-rule"></div>
+        <h1 class="hero-name">Dr. Amar Rao</h1>
+        <p class="hero-title">Associate Professor · Finance &amp; Econometrics</p>
+        <p class="hero-inst">School of Management, BML Munjal University, Gurugram</p>
+        <div class="hero-keywords">
+          <span class="kw">Empirical Finance</span>
+          <span class="kw">Econometrics</span>
+          <span class="kw">Capital Markets</span>
+          <span class="kw">Quantitative Methods</span>
+          <span class="kw">Data Analytics</span>
+        </div>
       </div>
     </div>
-    <div class="stat-row">
-      <div class="stat-card stat-blue"><div class="stat-number">46+</div><div class="stat-label">Publications</div></div>
-      <div class="stat-card stat-purple"><div class="stat-number">1,514</div><div class="stat-label">Citations</div></div>
-      <div class="stat-card stat-pink"><div class="stat-number">11K+</div><div class="stat-label">Reads</div></div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-n">46+</div><div class="stat-l">Publications</div></div>
+      <div class="stat-item"><div class="stat-n">2,700+</div><div class="stat-l">Citations</div></div>
+      <div class="stat-item"><div class="stat-n">11K+</div><div class="stat-l">Reads</div></div>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
-    <p class="eyebrow" style="color:var(--purple)">About Me</p>
-    <h2>Data. Models.<br>Financial Foresight.</h2>
-    <div class="about-body">
+    <p class="eyebrow">About</p>
+    <h2>Research, Teaching &amp;<br>Academic Leadership</h2>
+    <div class="about-text">
       <p>I am an <strong>Associate Professor of Finance</strong> at the School of Management, BML Munjal University, Gurugram. My work is driven by a passion for turning data into insights, markets into models, and code into financial foresight.</p>
       <p>My research focuses on <strong>empirical finance, quantitative methods, and financial econometrics</strong>, with particular emphasis on capital markets in emerging economies. I work at the intersection of rigorous statistical modelling and real-world financial phenomena, using tools ranging from panel econometrics to text analysis and machine learning.</p>
       <p>I am committed to producing <strong>high-impact, policy-relevant research</strong> and to training students who can think analytically, work with data, and contribute meaningfully to the finance profession.</p>
     </div>
-    <div class="about-cards">
-      <div class="about-card">
-        <div class="about-card-label" style="color:var(--blue)">Affiliations</div>
+    <div class="info-row">
+      <div class="info-block">
+        <div class="info-block-label">Affiliation</div>
         <ul>
-          <li class="li-blue"><strong>BML Munjal University</strong> · Gurugram, India</li>
-          <li class="li-orange">School of Management</li>
+          <li><strong>BML Munjal University</strong> · Gurugram, India</li>
+          <li>School of Management</li>
+          <li>Associate Professor</li>
         </ul>
       </div>
-      <div class="about-card">
-        <div class="about-card-label" style="color:var(--purple)">Methods &amp; Tools</div>
+      <div class="info-block">
+        <div class="info-block-label">Methods &amp; Tools</div>
         <ul>
-          <li class="li-blue">Stata · R · Python</li>
-          <li class="li-purple">Panel Data · Time Series</li>
-          <li class="li-orange">Econometrics · NLP</li>
-          <li class="li-green">Machine Learning · LaTeX</li>
+          <li>Stata · R · Python</li>
+          <li>Panel Data · Time Series</li>
+          <li>Econometrics · NLP</li>
+          <li>Machine Learning · LaTeX</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- RESEARCH -->
   <section id="research">
-    <p class="eyebrow" style="color:var(--pink)">Research</p>
+    <p class="eyebrow">Research</p>
     <h2>Publications &amp;<br>Research Interests</h2>
+
     <div class="interest-grid">
-      <div class="interest-card i-blue"><div class="interest-top">📊</div><h4>Capital Markets</h4><p>IPO underpricing, cost of capital, market efficiency in emerging economies.</p></div>
-      <div class="interest-card i-purple"><div class="interest-top">📉</div><h4>Financial Econometrics</h4><p>Panel data, time series, local projections, and SVAR modelling.</p></div>
-      <div class="interest-card i-pink"><div class="interest-top">🏦</div><h4>Central Bank Communication</h4><p>Textual analysis of monetary policy and its measurable market impact.</p></div>
-      <div class="interest-card i-orange"><div class="interest-top">🔒</div><h4>Cybersecurity &amp; Finance</h4><p>How cyber incidents shape cost of capital and investor confidence.</p></div>
-      <div class="interest-card i-green"><div class="interest-top">🌿</div><h4>ESG &amp; Sustainability</h4><p>Biodiversity disclosure, integrated reporting, energy transition economics.</p></div>
-      <div class="interest-card i-teal"><div class="interest-top">🤖</div><h4>AI in Finance</h4><p>AI adoption signals, "AI washing," and their valuation implications.</p></div>
+      <div class="int-card"><h4>Capital Markets</h4><p>IPO underpricing, cost of capital, and market efficiency in emerging economies.</p></div>
+      <div class="int-card"><h4>Financial Econometrics</h4><p>Panel data, time series, local projections, and SVAR modelling.</p></div>
+      <div class="int-card"><h4>Central Bank Communication</h4><p>Textual analysis of monetary policy and its measurable market impact.</p></div>
+      <div class="int-card"><h4>Cybersecurity &amp; Finance</h4><p>How cyber incidents shape firm cost of capital and investor confidence.</p></div>
+      <div class="int-card"><h4>ESG &amp; Sustainability</h4><p>Biodiversity disclosure, integrated reporting, and energy transition economics.</p></div>
+      <div class="int-card"><h4>AI in Finance</h4><p>AI adoption signals, "AI washing," and their valuation implications.</p></div>
     </div>
+
     <div class="pub-list">
-      <div class="pub-item"><div class="pub-num">01</div><div class="pub-body"><h3>Hybrid ML Models for Volatility Prediction in Financial Risk Management</h3><p>March 2025</p></div></div>
-      <div class="pub-item"><div class="pub-num">02</div><div class="pub-body"><h3>Decarbonization Dilemmas: Evaluating the Impact on Energy Security and Equity in Emerging Economies</h3><p>March 2025</p></div></div>
-      <div class="pub-item"><div class="pub-num">03</div><div class="pub-body"><h3>Mineral Policy and Sustainable Development Goals: Volatility Forecasting in the Global South's Minerals Market</h3><p>November 2024</p></div></div>
-      <div class="pub-item"><div class="pub-num">04</div><div class="pub-body"><h3>Temporal Dynamics of Geopolitical Risk: An Empirical Study on Energy Commodity Interest-Adjusted Spreads</h3><p>November 2024</p></div></div>
-      <div class="pub-item"><div class="pub-num">05</div><div class="pub-body"><h3>Good for the Planet, Good for the Wallet: The ESG Impact on Financial Performance in India</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">06</div><div class="pub-body"><h3>The Domino Effect: Analyzing the Impact of Silicon Valley Bank's Fall on Top Equity Indices Around the World</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">07</div><div class="pub-body"><h3>Impacts of Environmental Regulations on Green Economic Growth in China</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">08</div><div class="pub-body"><h3>Revisiting Conventional and Green Finance Spillover in Post-COVID World: Evidence from Robust Econometric Models</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">09</div><div class="pub-body"><h3>Revisiting the Financial Market Interdependence during COVID-19 Times: Green Bonds, Cryptocurrency, Commodities</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">10</div><div class="pub-body"><h3>Toward Advancing Theory on Creativity in Marketing and Artificial Intelligence</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">11</div><div class="pub-body"><h3>What Do the AI Methods Tell Us About Predicting Price Volatility of Key Natural Resources</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">12</div><div class="pub-body"><h3>Transition Towards Clean Energy Consumption in G7: Can Financial Sector, ICT and Democracy Help?</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">13</div><div class="pub-body"><h3>Forecasting Carbon Emissions Future Prices Using Machine Learning Methods</h3><p>Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-num">14</div><div class="pub-body"><h3>Analyzing Cyberchondriac Google Trends Data to Forecast Waves and Avoid Friction: Lessons from COVID-19 in India</h3><p>Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">1.</div><div class="pub-content"><h3>Hybrid ML Models for Volatility Prediction in Financial Risk Management</h3><p class="pub-meta">2025</p></div></div>
+      <div class="pub-item"><div class="pub-n">2.</div><div class="pub-content"><h3>Decarbonization Dilemmas: Evaluating the Impact on Energy Security and Equity in Emerging Economies</h3><p class="pub-meta">2025</p></div></div>
+      <div class="pub-item"><div class="pub-n">3.</div><div class="pub-content"><h3>Mineral Policy and Sustainable Development Goals: Volatility Forecasting in the Global South's Minerals Market</h3><p class="pub-meta">2024</p></div></div>
+      <div class="pub-item"><div class="pub-n">4.</div><div class="pub-content"><h3>Temporal Dynamics of Geopolitical Risk: An Empirical Study on Energy Commodity Interest-Adjusted Spreads</h3><p class="pub-meta">2024</p></div></div>
+      <div class="pub-item"><div class="pub-n">5.</div><div class="pub-content"><h3>Good for the Planet, Good for the Wallet: The ESG Impact on Financial Performance in India</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">6.</div><div class="pub-content"><h3>The Domino Effect: Analyzing the Impact of Silicon Valley Bank's Fall on Top Equity Indices Around the World</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">7.</div><div class="pub-content"><h3>Impacts of Environmental Regulations on Green Economic Growth in China</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">8.</div><div class="pub-content"><h3>Revisiting Conventional and Green Finance Spillover in Post-COVID World: Evidence from Robust Econometric Models</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">9.</div><div class="pub-content"><h3>Revisiting the Financial Market Interdependence during COVID-19 Times: Green Bonds, Cryptocurrency, Commodities</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">10.</div><div class="pub-content"><h3>Toward Advancing Theory on Creativity in Marketing and Artificial Intelligence</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">11.</div><div class="pub-content"><h3>What Do the AI Methods Tell Us About Predicting Price Volatility of Key Natural Resources</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">12.</div><div class="pub-content"><h3>Transition Towards Clean Energy Consumption in G7: Can Financial Sector, ICT and Democracy Help?</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">13.</div><div class="pub-content"><h3>Forecasting Carbon Emissions Future Prices Using Machine Learning Methods</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item"><div class="pub-n">14.</div><div class="pub-content"><h3>Analyzing Cyberchondriac Google Trends Data to Forecast Waves and Avoid Friction: Lessons from COVID-19 in India</h3><p class="pub-meta">Amar Rao</p></div></div>
     </div>
   </section>
 
+  <!-- TEACHING -->
   <section id="teaching">
-    <p class="eyebrow" style="color:var(--orange)">Teaching</p>
+    <p class="eyebrow">Teaching</p>
     <h2>Courses &amp;<br>Pedagogy</h2>
-    <div class="course-grid">
-      <div class="course-card c1"><div class="course-stripe"></div><div class="course-level">MBA · Core</div><h3>Financial Management</h3><p>Capital budgeting, valuation, working capital management, and financial policy for MBA students.</p></div>
-      <div class="course-card c2"><div class="course-stripe"></div><div class="course-level">MBA · Finance</div><h3>Security Analysis &amp; Portfolio Management</h3><p>Equity valuation, fixed income, portfolio construction, and risk management.</p></div>
-      <div class="course-card c3"><div class="course-stripe"></div><div class="course-level">MBA · Finance</div><h3>Derivatives &amp; Risk Management</h3><p>Options, futures, swaps, hedging strategies, and real-world applications in Indian markets.</p></div>
-      <div class="course-card c4"><div class="course-stripe"></div><div class="course-level">MBA · Elective</div><h3>Econometrics for Finance</h3><p>Panel data methods, time series analysis, event studies, and empirical finance applications.</p></div>
+    <div class="course-list">
+      <div class="course-item">
+        <div><div class="course-tag">MBA · Core</div></div>
+        <div><h3>Financial Management</h3><p>Capital budgeting, valuation, working capital management, and financial policy for MBA students.</p></div>
+      </div>
+      <div class="course-item">
+        <div><div class="course-tag">MBA · Finance</div></div>
+        <div><h3>Security Analysis &amp; Portfolio Management</h3><p>Equity valuation, fixed income, portfolio construction, and risk management.</p></div>
+      </div>
+      <div class="course-item">
+        <div><div class="course-tag">MBA · Finance</div></div>
+        <div><h3>Derivatives &amp; Risk Management</h3><p>Options, futures, swaps, hedging strategies, and applications in Indian markets.</p></div>
+      </div>
+      <div class="course-item">
+        <div><div class="course-tag">MBA · Elective</div></div>
+        <div><h3>Econometrics for Finance</h3><p>Panel data methods, time series analysis, event studies, and empirical finance applications.</p></div>
+      </div>
     </div>
-    <div class="teaching-note"><strong>Teaching Philosophy —</strong> Finance education must be deeply quantitative and grounded in real data. My courses connect theoretical frameworks to live market phenomena, equipping students to think rigorously, model confidently, and communicate findings with clarity.</div>
+    <div class="teaching-note">
+      <strong>Teaching Philosophy —</strong> Finance education must be deeply quantitative and grounded in real data. My courses connect theoretical frameworks to live market phenomena, equipping students to think rigorously, model confidently, and communicate findings with clarity.
+    </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
-    <p class="eyebrow" style="color:var(--green)">Contact</p>
+    <p class="eyebrow">Contact</p>
     <h2>Get In Touch</h2>
-    <div class="contact-grid">
-      <div class="contact-card"><div class="contact-icon-wrap ci-blue">✉</div><div><div class="contact-label">Email</div><div class="contact-value">amar.rao@bmu.edu.in</div></div></div>
-      <div class="contact-card"><div class="contact-icon-wrap ci-purple">🏛</div><div><div class="contact-label">Institution</div><div class="contact-value">BML Munjal University, Gurugram, India</div></div></div>
-      <div class="contact-card"><div class="contact-icon-wrap ci-green">🐙</div><div><div class="contact-label">GitHub</div><div class="contact-value"><a href="https://github.com/profrao" target="_blank">github.com/profrao</a></div></div></div>
-      <div class="contact-card"><div class="contact-icon-wrap ci-orange">📄</div><div><div class="contact-label">Google Scholar</div><div class="contact-value"><a href="https://scholar.google.com/citations?user=-ZxPXBcAAAAJ" target="_blank">View Profile →</a></div></div></div>
+    <p class="contact-intro">I welcome conversations about research collaborations, speaking invitations, and academic matters.</p>
+    <div class="contact-list">
+      <div class="contact-row"><div class="contact-key">Email (Work)</div><div class="contact-val">amar.rao@bmu.edu.in</div></div>
+      <div class="contact-row"><div class="contact-key">Email (Personal)</div><div class="contact-val">amarydvrao@gmail.com</div></div>
+      <div class="contact-row"><div class="contact-key">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/amarydv/" target="_blank">linkedin.com/in/amarydv</a></div></div>
+      <div class="contact-row"><div class="contact-key">Institution</div><div class="contact-val">BML Munjal University, Gurugram, Haryana, India</div></div>
+      <div class="contact-row"><div class="contact-key">GitHub</div><div class="contact-val"><a href="https://github.com/profrao" target="_blank">github.com/profrao</a></div></div>
+      <div class="contact-row"><div class="contact-key">Google Scholar</div><div class="contact-val"><a href="https://scholar.google.com/citations?user=-ZxPXBcAAAAJ" target="_blank">View Profile →</a></div></div>
     </div>
   </section>
 
@@ -312,20 +500,19 @@
     document.getElementById('sidebar').classList.toggle('open'));
 
   const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('#navLinks a');
+  const links    = document.querySelectorAll('#navLinks a');
 
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        const id = '#' + e.target.id;
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
       }
     });
   }, { threshold: 0.12 });
 
   sections.forEach(s => obs.observe(s));
-  navLinks.forEach(a => a.addEventListener('click', () =>
+  links.forEach(a => a.addEventListener('click', () =>
     document.getElementById('sidebar').classList.remove('open')));
 </script>
 </body>
