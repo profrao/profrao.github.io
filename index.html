@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Amar Rao — Academic Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:         #f2ebe0;
+      --surface:    #ece3d5;
+      --border:     rgba(120,90,50,0.13);
+      --text:       #2c1f0e;
+      --muted:      rgba(44,31,14,0.48);
+      --accent:     #8b5e2e;
+      --accent2:    #4a7a6a;
+      --glow:       rgba(139,94,46,0.09);
+      --nav-w:      220px;
+    }
+    [data-theme="dark"] {
+      --bg:         #1a1208;
+      --surface:    #231a0d;
+      --border:     rgba(200,169,110,0.1);
+      --text:       #e8dcc8;
+      --muted:      rgba(232,220,200,0.45);
+      --accent:     #c8a96e;
+      --accent2:    #6ea8a0;
+      --glow:       rgba(200,169,110,0.1);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      transition: background 0.4s, color 0.4s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .shell {
+      display: flex;
+      min-height: 100vh;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── SIDEBAR NAV ────────────────────────────────────────── */
+    nav {
+      width: var(--nav-w);
+      position: fixed; top: 0; left: 0; bottom: 0;
+      display: flex; flex-direction: column;
+      padding: 48px 28px;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      z-index: 100;
+      transition: background 0.4s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .nav-title {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
+      flex: 1;
+    }
+    .nav-links a {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: var(--glow);
+      text-decoration: none;
+    }
+    .nav-links a.active { color: var(--accent); }
+    .nav-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .nav-links a.active .nav-dot { opacity: 1; }
+
+    /* theme toggle */
+    .theme-btn {
+      margin-top: auto;
+      background: var(--glow);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── MAIN ───────────────────────────────────────────────── */
+    main {
+      margin-left: var(--nav-w);
+      flex: 1;
+      padding: 0 64px 120px;
+      max-width: 860px;
+    }
+
+    /* ─── SECTION SHELL ──────────────────────────────────────── */
+    section {
+      padding: 96px 0 0;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    section.visible { opacity: 1; transform: none; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 48px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      padding-top: 112px;
+      opacity: 1; transform: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-role {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 48px;
+    }
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .hero-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-top: 64px;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 8px;
+    }
+    .about-text { grid-column: 1 / -1; }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .info-card-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .info-card ul { list-style: none; }
+    .info-card li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-card li:last-child { border-bottom: none; }
+    .info-card li strong { color: var(--text); font-weight: 500; }
+
+    /* ─── RESEARCH ───────────────────────────────────────────── */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .interest-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .interest-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .interest-icon { font-size: 1.4rem; margin-bottom: 10px; }
+    .interest-card h4 {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .interest-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pub-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .pub-item:hover { border-color: rgba(200,169,110,0.3); }
+    .pub-item:hover::before { opacity: 1; }
+    .pub-meta {
+      display: flex; gap: 10px; align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .pub-badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--glow);
+      color: var(--accent);
+      border: 1px solid rgba(200,169,110,0.2);
+    }
+    .pub-badge.blue {
+      background: rgba(110,168,200,0.1);
+      color: var(--accent2);
+      border-color: rgba(110,168,200,0.2);
+    }
+    .pub-year { font-size: 0.75rem; color: var(--muted); }
+    .pub-item h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .pub-authors { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+    .pub-journal { font-size: 0.8rem; color: var(--accent2); margin-top: 6px; }
+
+    /* ─── TEACHING ───────────────────────────────────────────── */
+    .course-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .course-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .course-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .course-level {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+    .course-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .course-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .teaching-note {
+      margin-top: 40px;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--glow);
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .teaching-note strong { color: var(--accent); font-style: normal; }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-item-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .contact-item-value {
+      font-size: 0.88rem;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      margin-left: var(--nav-w);
+      padding: 32px 64px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      position: relative; z-index: 1;
+    }
+
+    /* ─── MOBILE ─────────────────────────────────────────────── */
+    .hamburger {
+      display: none;
+      position: fixed; top: 20px; left: 20px; z-index: 200;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    @media (max-width: 800px) {
+      nav {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+      }
+      nav.open { transform: none; }
+      .hamburger { display: block; }
+      main { margin-left: 0; padding: 60px 24px 80px; }
+      footer { margin-left: 0; padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .about-grid, .course-grid, .contact-grid { grid-template-columns: 1fr; }
+      .interest-grid { grid-template-columns: 1fr 1fr; }
+      h2 { font-size: 2.2rem; }
+    }
+    @media (max-width: 500px) {
+      .interest-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+
+<!-- SIDEBAR NAV -->
+<nav id="sidebar">
+  <div class="nav-logo">Amar Rao</div>
+  <div class="nav-title">Associate Professor (Ph.D.)<br>BML Munjal University</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero" class="active"><span class="nav-dot"></span>Home</a></li>
+    <li><a href="#about"><span class="nav-dot"></span>About</a></li>
+    <li><a href="#research"><span class="nav-dot"></span>Research</a></li>
+    <li><a href="#teaching"><span class="nav-dot"></span>Teaching</a></li>
+    <li><a href="#contact"><span class="nav-dot"></span>Contact</a></li>
+  </ul>
+  <button class="theme-btn" id="themeToggle">
+    <span id="themeIcon">🌙</span>
+    <span id="themeLabel">Dark Mode</span>
+  </button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="shell">
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <p class="hero-eyebrow">Welcome</p>
+      <h1 class="hero-name">Dr. <em>Amar</em><br>Rao</h1>
+      <p class="hero-role">
+        Associate Professor · Finance &amp; Econometrics<br>
+        BML Munjal University, Gurugram · Széchenyi István University, Hungary
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Empirical Finance</span>
+        <span class="tag">Econometrics</span>
+        <span class="tag">Capital Markets</span>
+        <span class="tag">Quantitative Methods</span>
+        <span class="tag">Data Analytics</span>
+      </div>
+      <div class="hero-divider"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About Me</div>
+      <h2>Researcher, Educator,<br>Institution Builder</h2>
+      <div class="about-text">
+        <p>I am an <strong>Associate Professor of Finance</strong> at the School of Management, BML Munjal University, Gurugram, with a dual affiliation at <strong>Széchenyi István University of Győr, Hungary</strong>. My work is driven by a passion for turning data into insights, markets into models, and code into financial foresight.</p>
+        <p>My research focuses on <strong>empirical finance, quantitative methods, and financial econometrics</strong>, with particular emphasis on capital markets in emerging economies. I work at the intersection of rigorous statistical modelling and real-world financial phenomena, using tools ranging from panel econometrics to text analysis and machine learning.</p>
+        <p>I am committed to producing <strong>high-impact, policy-relevant research</strong> and to training students who can think analytically, work with data, and contribute meaningfully to the finance profession.</p>
+      </div>
+      <div class="about-grid" style="margin-top: 32px;">
+        <div class="info-card">
+          <div class="info-card-label">Affiliations</div>
+          <ul>
+            <li><strong>BML Munjal University</strong> · Gurugram, India</li>
+            <li><strong>Széchenyi István University</strong> · Győr, Hungary</li>
+            <li>School of Management</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Methods &amp; Tools</div>
+          <ul>
+            <li>Stata · R · Python</li>
+            <li>Panel Data · Time Series</li>
+            <li>Econometrics · NLP</li>
+            <li>Machine Learning · LaTeX</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="section-label">Research</div>
+      <h2>Publications &<br>Research Interests</h2>
+
+      <div class="interest-grid">
+        <div class="interest-card">
+          <div class="interest-icon">📊</div>
+          <h4>Capital Markets</h4>
+          <p>IPO underpricing, cost of capital, market efficiency in emerging economies.</p>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">📉</div>
+          <h4>Financial Econometrics</h4>
+          <p>Panel data, time series, local projections, and SVAR modelling for financial data.</p>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🏦</div>
+          <h4>Central Bank Communication</h4>
+          <p>Textual analysis of monetary policy and its measurable impact on markets.</p>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🔒</div>
+          <h4>Cybersecurity &amp; Finance</h4>
+          <p>How cyber incidents shape firm cost of capital and investor confidence.</p>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🌿</div>
+          <h4>ESG &amp; Sustainability</h4>
+          <p>Biodiversity disclosure, integrated reporting, and energy transition economics.</p>
+        </div>
+        <div class="interest-card">
+          <div class="interest-icon">🤖</div>
+          <h4>AI in Finance</h4>
+          <p>AI adoption signals, "AI washing," and their valuation implications in Indian markets.</p>
+        </div>
+      </div>
+
+      <!-- Publications — update with your real papers -->
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-meta">
+            <span class="pub-badge">Working Paper</span>
+            <span class="pub-year">2024–25</span>
+          </div>
+          <h3>Cybersecurity Incidents and Cost of Capital: Evidence from NIFTY 50 Firms</h3>
+          <p class="pub-authors">Dr. Amar Rao, Akshita [Last Name]</p>
+          <p class="pub-journal">Target: FT50 / ABDC A* Journal</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta">
+            <span class="pub-badge">Working Paper</span>
+            <span class="pub-year">2024–25</span>
+          </div>
+          <h3>Central Bank Communication Indices and Market Expectations: A Textual Analysis of RBI Statements</h3>
+          <p class="pub-authors">Dr. Amar Rao, Akshita [Last Name]</p>
+          <p class="pub-journal">Target: FT50 / ABDC A* Journal</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta">
+            <span class="pub-badge blue">Published</span>
+            <span class="pub-year">Add Year</span>
+          </div>
+          <h3>[Add your published paper title here]</h3>
+          <p class="pub-authors">Add Authors</p>
+          <p class="pub-journal">Add Journal Name</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <div class="section-label">Teaching</div>
+      <h2>Courses &<br>Pedagogy</h2>
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="course-level">MBA · Core</div>
+          <h3>Financial Management</h3>
+          <p>Capital budgeting, valuation, working capital management, and financial policy for MBA students.</p>
+        </div>
+        <div class="course-card">
+          <div class="course-level">MBA · Finance</div>
+          <h3>Security Analysis &amp; Portfolio Management</h3>
+          <p>Equity valuation, fixed income, portfolio construction, and risk management.</p>
+        </div>
+        <div class="course-card">
+          <div class="course-level">MBA · Finance</div>
+          <h3>Derivatives &amp; Risk Management</h3>
+          <p>Options, futures, swaps, hedging strategies, and real-world applications in Indian markets.</p>
+        </div>
+        <div class="course-card">
+          <div class="course-level">MBA · Elective</div>
+          <h3>Econometrics for Finance</h3>
+          <p>Panel data methods, time series analysis, event studies, and applications in empirical finance research.</p>
+        </div>
+      </div>
+      <div class="teaching-note">
+        <strong>Teaching Philosophy:</strong> I believe finance education must be deeply quantitative and grounded in real data. My courses connect theoretical frameworks to live market phenomena, equipping students to think rigorously, model confidently, and communicate findings with clarity.
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <h2>Get In Touch</h2>
+      <p class="contact-intro">I welcome conversations about research collaborations, speaking invitations, and academic matters.</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">amar.rao@bmu.edu.in</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🏛</span>
+          <div>
+            <div class="contact-item-label">Institution</div>
+            <div class="contact-item-value">BML Munjal University, Gurugram, Haryana, India</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🐙</span>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-value"><a href="https://github.com/profrao" target="_blank">github.com/profrao</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📄</span>
+          <div>
+            <div class="contact-item-label">Google Scholar</div>
+            <div class="contact-item-value"><a href="#">View Profile →</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Dr. Amar Rao · BML Munjal University</span>
+  <span>Built with GitHub Pages · profrao.github.io</span>
+</footer>
+
+<script>
+  /* ─── THEME TOGGLE ─────────────────────────── */
+  const toggle = document.getElementById('themeToggle');
+  const icon   = document.getElementById('themeIcon');
+  const label  = document.getElementById('themeLabel');
+  const html   = document.documentElement;
+
+  toggle.addEventListener('click', () => {
+    const isLight = html.dataset.theme === 'light';
+    html.dataset.theme = isLight ? 'dark' : 'light';
+    icon.textContent  = isLight ? '🌙' : '☀';
+    label.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+  });
+
+  /* ─── HAMBURGER ────────────────────────────── */
+  const hamburger = document.getElementById('hamburger');
+  const sidebar   = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+  /* ─── SCROLL SPY ───────────────────────────── */
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('#navLinks a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      // active nav link
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+      // reveal animation
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(s => observer.observe(s));
+
+  /* ─── Close sidebar on mobile nav click ────── */
+  navLinks.forEach(a => {
+    a.addEventListener('click', () => sidebar.classList.remove('open'));
+  });
+</script>
+</body>
+</html>
