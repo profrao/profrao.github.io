@@ -248,7 +248,9 @@
       font-size: 0.75rem; color: var(--muted);
       min-width: 24px; padding-top: 3px;
       font-style: italic;
+      flex-shrink: 0;
     }
+    .pub-content { flex: 1; }
     .pub-content h3 {
       font-size: 0.92rem; font-weight: 600;
       color: var(--ink); margin-bottom: 3px;
@@ -361,7 +363,7 @@
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-photo">
-        <img src="data:image/jpeg;base64,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iICIiAiIgIQCLEAj1REGu+lYTdnh9OS1KinkbqW3FtwpNFWaxKdoUbm6vtopR8Ub/MwE9eawuo4/ylzVXwlO1mEYnWYTXMrKKUse3fo4dCvXOFeN6bGGNilf3M4tdhdqfZeQvonHyvB91jZS1cMrZYXZXtNw5rrELnzcaMn9t8PItinr0+qcGjZPDnu4X2INipaoo6Oiw59VWVUUULReSSY5Q0f9XJeH8IdpdZhWEOgxChdU1EYtFlcAH+/RcnxnxXxNxXPfE6h3w7TeOmjOWJvyvqfUrzK8DLa2p6h6lvqGOtOu5d1xz2tU1PLLScMxCqeLt+Jlb+GPVo3PubLx7FK+txSvfWYhUyVFRITme83+Q6eyv+BmO1h7lXNw5580oHsLr08PHrjj8YeVm5F8s/lLRCyxuOy32YfCPM5zvTYLYjhij8kbR62W/gx2hpaCeaUPjYG5vMToAVuU2FRR2dM7vHdNgpBFeKxCNqNa1rQ1oAA2ACqiKyBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH/2Q==" alt="Dr. Amar Rao"/>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAE/AY0DASIAAhEBAxEB/8QAHAABAAEFAQEAAAAAAAAAAAAAAAUBAgMEBgcI/8QAQRAAAQMCBAMGBAQDBgUFAAAAAQACAwQRBRIhMQZBUQcTIjJhcRSBkaEjQrHwUsHRCBUkM2KSFhdygqIlU7Lh8f/EABoBAQADAQEBAAAAAAAAAAAAAAABAgMEBQb/xAAnEQEAAgICAgEEAgMBAAAAAAAAAQIDEQQhEjFBBRMiUWFxMqGxM//aAAwDAQACEQMRAD8A+YkRFqoIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgK2SXU+FvUqJmI9jXV7YpHDNlIb1OgUhHHTU4u6xd1Ov2URMfisTMcby5rnAg32WU5f0t4tmSJscZcZAbc+Q9yo+eaVrS+5YwbEt1Py5BbeIPZSua1z2vyC402vpzdZK+lYTdnh9OS1KinkbqW3FtwpNFWaxKdoUbm6vtopR8Ub/MwE9eawuo4/ylzVXwlO1mEYnWYTXMrKKUse3fo4dCvXOFeN6bGGNilf3M4tdhdqfZeQvonHyvB91jZS1cMrZYXZXtNw5rrELnzcaMn9t8PItinr0+qcGjZPDnu4X2INipaoo6Oiw59VWVUUULReSSY5Q0f9XJeH8IdpdZhWEOgxChdU1EYtFlcAH+/RcnxnxXxNxXPfE6h3w7TeOmjOWJvyvqfUrzK8DLa2p6h6lvqGOtOu5d1xz2tU1PLLScMxCqeLt+Jlb+GPVo3PubLx7FK+txSvfWYhUyVFRITme83+Q6eyv+BmO1h7lXNw5580oHsLr08PHrjj8YeVm5F8s/lLRCyxuOy32YfCPM5zvTYLYjhij8kbR62W/gx2hpaCeaUPjYG5vMToAVuU2FRR2dM7vHdNgpBFeKxCNqNa1rQ1oAA2ACqiKyBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREH/2Q==" alt="Dr. Amar Rao"/>
       </div>
       <div class="hero-content">
         <div class="hero-rule"></div>
@@ -378,8 +380,8 @@
       </div>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-n">46+</div><div class="stat-l">Publications</div></div>
-      <div class="stat-item"><div class="stat-n">2,700+</div><div class="stat-l">Citations</div></div>
+      <div class="stat-item"><div class="stat-n">49</div><div class="stat-l">Publications</div></div>
+      <div class="stat-item"><div class="stat-n">2,048</div><div class="stat-l">Citations</div></div>
       <div class="stat-item"><div class="stat-n">11K+</div><div class="stat-l">Reads</div></div>
     </div>
   </section>
@@ -428,21 +430,351 @@
       <div class="int-card"><h4>AI in Finance</h4><p>AI adoption signals, "AI washing," and their valuation implications.</p></div>
     </div>
 
+    <h3 style="margin-top: 48px; margin-bottom: 24px; font-size: 1.1rem;">All Publications (49 Active)</h3>
     <div class="pub-list">
-      <div class="pub-item"><div class="pub-n">1.</div><div class="pub-content"><h3>Hybrid ML Models for Volatility Prediction in Financial Risk Management</h3><p class="pub-meta">2025</p></div></div>
-      <div class="pub-item"><div class="pub-n">2.</div><div class="pub-content"><h3>Decarbonization Dilemmas: Evaluating the Impact on Energy Security and Equity in Emerging Economies</h3><p class="pub-meta">2025</p></div></div>
-      <div class="pub-item"><div class="pub-n">3.</div><div class="pub-content"><h3>Mineral Policy and Sustainable Development Goals: Volatility Forecasting in the Global South's Minerals Market</h3><p class="pub-meta">2024</p></div></div>
-      <div class="pub-item"><div class="pub-n">4.</div><div class="pub-content"><h3>Temporal Dynamics of Geopolitical Risk: An Empirical Study on Energy Commodity Interest-Adjusted Spreads</h3><p class="pub-meta">2024</p></div></div>
-      <div class="pub-item"><div class="pub-n">5.</div><div class="pub-content"><h3>Good for the Planet, Good for the Wallet: The ESG Impact on Financial Performance in India</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">6.</div><div class="pub-content"><h3>The Domino Effect: Analyzing the Impact of Silicon Valley Bank's Fall on Top Equity Indices Around the World</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">7.</div><div class="pub-content"><h3>Impacts of Environmental Regulations on Green Economic Growth in China</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">8.</div><div class="pub-content"><h3>Revisiting Conventional and Green Finance Spillover in Post-COVID World: Evidence from Robust Econometric Models</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">9.</div><div class="pub-content"><h3>Revisiting the Financial Market Interdependence during COVID-19 Times: Green Bonds, Cryptocurrency, Commodities</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">10.</div><div class="pub-content"><h3>Toward Advancing Theory on Creativity in Marketing and Artificial Intelligence</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">11.</div><div class="pub-content"><h3>What Do the AI Methods Tell Us About Predicting Price Volatility of Key Natural Resources</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">12.</div><div class="pub-content"><h3>Transition Towards Clean Energy Consumption in G7: Can Financial Sector, ICT and Democracy Help?</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">13.</div><div class="pub-content"><h3>Forecasting Carbon Emissions Future Prices Using Machine Learning Methods</h3><p class="pub-meta">Amar Rao</p></div></div>
-      <div class="pub-item"><div class="pub-n">14.</div><div class="pub-content"><h3>Analyzing Cyberchondriac Google Trends Data to Forecast Waves and Avoid Friction: Lessons from COVID-19 in India</h3><p class="pub-meta">Amar Rao</p></div></div>
+      <div class="pub-item">
+        <div class="pub-n">1.</div>
+        <div class="pub-content">
+          <h3>Geopolitical instability and environmental sustainability</h3>
+          <p class="pub-meta">2026 · Environmental Economics and Policy Studies · <strong style='color: var(--accent);'>4 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">2.</div>
+        <div class="pub-content">
+          <h3>Analyzing Cyberchondriac Google Trends Data to Forecast Waves and Avoid Friction: Lessons From COVID-19 in India</h3>
+          <p class="pub-meta">2024 · IEEE Transactions on Engineering Management · <strong style='color: var(--accent);'>9 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">3.</div>
+        <div class="pub-content">
+          <h3>How do fiscal policies, energy consumption and environmental stringency impact energy transition in the G7 economies: Policy implications for the COP28</h3>
+          <p class="pub-meta">2024 · Journal of Cleaner Production · <strong style='color: var(--accent);'>68 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">4.</div>
+        <div class="pub-content">
+          <h3>Economic policy uncertainty: Global energy security with diversification</h3>
+          <p class="pub-meta">2024 · Economic Analysis and Policy · <strong style='color: var(--accent);'>70 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">5.</div>
+        <div class="pub-content">
+          <h3>Resolving energy poverty for social change: Research directions and agenda</h3>
+          <p class="pub-meta">2022 · Technological Forecasting and Social Change · <strong style='color: var(--accent);'>98 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">6.</div>
+        <div class="pub-content">
+          <h3>Unraveling the crystal ball: Machine learning models for crude oil and natural gas volatility forecasting</h3>
+          <p class="pub-meta">2024 · Energy Economics · <strong style='color: var(--accent);'>20 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">7.</div>
+        <div class="pub-content">
+          <h3>Empowering energy transition: Green innovation, digital finance, and the path to sustainable prosperity through green finance initiatives</h3>
+          <p class="pub-meta">2024 · Energy Economics · <strong style='color: var(--accent);'>139 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">8.</div>
+        <div class="pub-content">
+          <h3>Work from home practices as corporate strategy- an integrative review</h3>
+          <p class="pub-meta">2023 · Heliyon · <strong style='color: var(--accent);'>11 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">9.</div>
+        <div class="pub-content">
+          <h3>Do green energy markets catch cold when conventional energy markets sneeze?</h3>
+          <p class="pub-meta">2023 · Energy Economics · <strong style='color: var(--accent);'>30 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">10.</div>
+        <div class="pub-content">
+          <h3>Climate resilience through finance: The divergent roles of institutions and markets</h3>
+          <p class="pub-meta">2025 · Finance Research Letters · <strong style='color: var(--accent);'>3 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">11.</div>
+        <div class="pub-content">
+          <h3>Impacts of environmental regulations on green economic growth in China: New guidelines regarding renewable energy and energy efficiency</h3>
+          <p class="pub-meta">2022 · Renewable Energy · <strong style='color: var(--accent);'>311 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">12.</div>
+        <div class="pub-content">
+          <h3>Revisiting the financial market interdependence during COVID-19 times: a study of green bonds, cryptocurrency, commodities and other financial markets</h3>
+          <p class="pub-meta">2022 · International Journal of Managerial Finance · <strong style='color: var(--accent);'>61 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">13.</div>
+        <div class="pub-content">
+          <h3>Crude oil Price forecasting: Leveraging machine learning for global economic stability</h3>
+          <p class="pub-meta">2025 · Technological Forecasting and Social Change · <strong style='color: var(--accent);'>8 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">14.</div>
+        <div class="pub-content">
+          <h3>Hybrid ML models for volatility prediction in financial risk management</h3>
+          <p class="pub-meta">2025 · International Review of Economics and Finance · <strong style='color: var(--accent);'>23 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">15.</div>
+        <div class="pub-content">
+          <h3>Energy in the backseat? Investigating decarbonization dialogue in supply chain tweets during and after COVID-19</h3>
+          <p class="pub-meta">2024 · Annals of Operations Research · <strong style='color: var(--accent);'>7 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">16.</div>
+        <div class="pub-content">
+          <h3>Minerals at the crossroads: Economic policies, global trade, and renewable energy in the global South</h3>
+          <p class="pub-meta">2024 · Resources Policy · <strong style='color: var(--accent);'>16 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">17.</div>
+        <div class="pub-content">
+          <h3>Environmental apprehension under COP26 agreement: Examining the influence of environmental-related technologies and energy consumption on ecological footprint</h3>
+          <p class="pub-meta">2024 · International Journal of Environmental Science and Technology · <strong style='color: var(--accent);'>19 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">18.</div>
+        <div class="pub-content">
+          <h3>What do we learn from Nexus between trade diversification and structural change: informing the future about climate action and Sustainability</h3>
+          <p class="pub-meta">2023 · Environmental Science and Pollution Research · <strong style='color: var(--accent);'>41 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">19.</div>
+        <div class="pub-content">
+          <h3>Temporal dynamics of geopolitical risk: An empirical study on energy commodity interest-adjusted spreads</h3>
+          <p class="pub-meta">2025 · Energy Economics · <strong style='color: var(--accent);'>7 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">20.</div>
+        <div class="pub-content">
+          <h3>ASSESSING AND MITIGATING THE IMPACT OF GEOPOLITICAL RISK UNCERTAINTY ON THE INDIAN FINANCIAL SECTOR: A POLICY PERSPECTIVE</h3>
+          <p class="pub-meta">2024 · Buletin Ekonomi Moneter dan Perbankan/Monetary and banking economics bulletin · <strong style='color: var(--accent);'>3 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">21.</div>
+        <div class="pub-content">
+          <h3>SDG adoption and firm risk: The impact of ESG performance, investor confidence, and agency cost</h3>
+          <p class="pub-meta">2025 · International Review of Economics and Finance · <strong style='color: var(--accent);'>16 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">22.</div>
+        <div class="pub-content">
+          <h3>Accelerating renewables: Unveiling the role of green energy markets</h3>
+          <p class="pub-meta">2024 · Applied Energy · <strong style='color: var(--accent);'>38 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">23.</div>
+        <div class="pub-content">
+          <h3>What do the AI methods tell us about predicting price volatility of key natural resources: Evidence from hyperparameter tuning</h3>
+          <p class="pub-meta">2023 · Resources Policy · <strong style='color: var(--accent);'>26 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">24.</div>
+        <div class="pub-content">
+          <h3>Transition towards clean energy consumption in G7: Can financial sector, ICT and democracy help?</h3>
+          <p class="pub-meta">2023 · Resources Policy · <strong style='color: var(--accent);'>46 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">25.</div>
+        <div class="pub-content">
+          <h3>Mineral policy and sustainable development goals: Volatility forecasting in the Global South's minerals market</h3>
+          <p class="pub-meta">2024 · Resources Policy</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">26.</div>
+        <div class="pub-content">
+          <h3>Are environment-related technologies key to unlock the path towards sustainable development: An econometric analysis</h3>
+          <p class="pub-meta">2024 · Geoscience Frontiers · <strong style='color: var(--accent);'>16 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">27.</div>
+        <div class="pub-content">
+          <h3>Corrigendum to “The role of renewable energy and natural resources for sustainable agriculture in ASEAN countries: Do carbon emissions and deforestation affect agriculture productivity?” [Resour. Pol. (2022) 102578](S0301420722000290)(10.1016/j.resourpol.2022.102578)</h3>
+          <p class="pub-meta">2023 · Resources Policy</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">28.</div>
+        <div class="pub-content">
+          <h3>Revisting conventional and green finance spillover in post-COVID world: Evidence from robust econometric models</h3>
+          <p class="pub-meta">2022 · Global Finance Journal · <strong style='color: var(--accent);'>85 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">29.</div>
+        <div class="pub-content">
+          <h3>Good for the planet, good for the wallet: The ESG impact on financial performance in India</h3>
+          <p class="pub-meta">2023 · Finance Research Letters · <strong style='color: var(--accent);'>139 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">30.</div>
+        <div class="pub-content">
+          <h3>The role of natural resources in the management of environmental sustainability: Machine learning approach</h3>
+          <p class="pub-meta">2023 · Resources Policy · <strong style='color: var(--accent);'>70 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">31.</div>
+        <div class="pub-content">
+          <h3>Toward advancing theory on creativity in marketing and artificial intelligence</h3>
+          <p class="pub-meta">2022 · Psychology and Marketing · <strong style='color: var(--accent);'>185 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">32.</div>
+        <div class="pub-content">
+          <h3>Decarbonization dilemmas: Evaluating the impact on energy security and equity in emerging economies</h3>
+          <p class="pub-meta">2025 · Energy Economics · <strong style='color: var(--accent);'>8 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">33.</div>
+        <div class="pub-content">
+          <h3>US financial stress, regional spillovers, and global economic policy uncertainty</h3>
+          <p class="pub-meta">2026 · Finance Research Letters</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">34.</div>
+        <div class="pub-content">
+          <h3>Carbon conundrums: Geopolitical clashes and market mayhem in the race for sustainability</h3>
+          <p class="pub-meta">2024 · Journal of Environmental Management · <strong style='color: var(--accent);'>16 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">35.</div>
+        <div class="pub-content">
+          <h3>Impact of technological advancement and greener energy on sustainable agriculture in Asia: Evidence from selected Asian countries</h3>
+          <p class="pub-meta">2025 · Sustainable Development · <strong style='color: var(--accent);'>13 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">36.</div>
+        <div class="pub-content">
+          <h3>Role of Economic Policy Uncertainty in Energy Commodities Prices Forecasting: Evidence from a Hybrid Deep Learning Approach</h3>
+          <p class="pub-meta">2024 · Computational Economics · <strong style='color: var(--accent);'>15 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">37.</div>
+        <div class="pub-content">
+          <h3>The future of finance: Artificial intelligence's influence on behavioral investment decisions</h3>
+          <p class="pub-meta">2023 · Leveraging AI and Emotional Intelligence in Contemporary Business Organizations · <strong style='color: var(--accent);'>4 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">38.</div>
+        <div class="pub-content">
+          <h3>Climate risk spillovers and financial tail-events: Evidence from quantile analysis</h3>
+          <p class="pub-meta">2026 · Research in International Business and Finance · <strong style='color: var(--accent);'>1 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">39.</div>
+        <div class="pub-content">
+          <h3>Corrigendum to “Do green energy markets catch cold when conventional energy markets sneeze?” [Energy Economics Volume 127, Part A, November 2023, 107035] (Energy Economics (2023) 127(PA), (S0140988323005339), (10.1016/j.eneco.2023.107035))</h3>
+          <p class="pub-meta">2025 · Energy Economics</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">40.</div>
+        <div class="pub-content">
+          <h3>Unveiling temporal and frequency spillovers: Climate-risk indices and energy futures markets</h3>
+          <p class="pub-meta">2025 · Journal of Environmental Management · <strong style='color: var(--accent);'>1 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">41.</div>
+        <div class="pub-content">
+          <h3>Quantifying the impact of interest rate volatility on Asian energy companies: A comparative study of fossil and renewable sectors</h3>
+          <p class="pub-meta">2024 · Energy Economics · <strong style='color: var(--accent);'>7 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">42.</div>
+        <div class="pub-content">
+          <h3>Economic sustainability and institutional quality in the green energy transition: Evidence from developing economies</h3>
+          <p class="pub-meta">2026 · International Economics</p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">43.</div>
+        <div class="pub-content">
+          <h3>Financial market reactions to U.S. tariff announcements: Evidence from trade-surplus and trade-deficit countries</h3>
+          <p class="pub-meta">2025 · Finance Research Letters · <strong style='color: var(--accent);'>12 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">44.</div>
+        <div class="pub-content">
+          <h3>Co-movement between COVID-19, oil price and American stock market during 2020: Fresh investigation from partial and multiple wavelet methods</h3>
+          <p class="pub-meta">2024 · Resources Policy · <strong style='color: var(--accent);'>8 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">45.</div>
+        <div class="pub-content">
+          <h3>The domino effect: Analyzing the impact of Silicon Valley Bank's fall on top equity indices around the world</h3>
+          <p class="pub-meta">2023 · Finance Research Letters · <strong style='color: var(--accent);'>42 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">46.</div>
+        <div class="pub-content">
+          <h3>The crisis effect in TPB as a moderator for post-pandemic entrepreneurial intentions among higher education students: PLS-SEM and ANN approach</h3>
+          <p class="pub-meta">2023 · International Journal of Management Education · <strong style='color: var(--accent);'>42 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">47.</div>
+        <div class="pub-content">
+          <h3>The role of renewable energy and natural resources for sustainable agriculture in ASEAN countries: Do carbon emissions and deforestation affect agriculture productivity?</h3>
+          <p class="pub-meta">2022 · Resources Policy · <strong style='color: var(--accent);'>251 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">48.</div>
+        <div class="pub-content">
+          <h3>Climate change dynamics for global energy security and equity: Evidence from policy stringency drivers</h3>
+          <p class="pub-meta">2024 · Journal of Environmental Management · <strong style='color: var(--accent);'>45 citations</strong></p>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-n">49.</div>
+        <div class="pub-content">
+          <h3>Climate risk and carbon emissions: Examining their impact on key energy markets through asymmetric spillovers</h3>
+          <p class="pub-meta">2023 · Energy Economics · <strong style='color: var(--accent);'>46 citations</strong></p>
+        </div>
+      </div>
     </div>
   </section>
 
