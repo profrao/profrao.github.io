@@ -811,8 +811,8 @@
     <h2>Get In Touch</h2>
     <p class="contact-intro">I welcome conversations about research collaborations, speaking invitations, and academic matters.</p>
     <div class="contact-list">
-      <div class="contact-row"><div class="contact-key">Email (Work)</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9dfcf0fcefb3effcf2ddfff0e8b3f8f9e8b3f4f3">[email&#160;protected]</a></div></div>
-      <div class="contact-row"><div class="contact-key">Email (Personal)</div><div class="contact-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="11707c706368756763707e51767c70787d3f727e7c">[email&#160;protected]</a></div></div>
+      <div class="contact-row"><div class="contact-key">Email (Work)</div><div class="contact-val"><a href="mailto:amar.rao@bmu.edu.in">amar.rao@bmu.edu.in</a></div></div>
+      <div class="contact-row"><div class="contact-key">Email (Personal)</div><div class="contact-val"><a href="mailto:amarydvrao@gmail.com">amarydvrao@gmail.com</a></div></div>
       <div class="contact-row"><div class="contact-key">LinkedIn</div><div class="contact-val"><a href="https://www.linkedin.com/in/amarydv/" target="_blank">linkedin.com/in/amarydv</a></div></div>
       <div class="contact-row"><div class="contact-key">Institution</div><div class="contact-val">BML Munjal University, Gurugram, Haryana, India</div></div>
       <div class="contact-row"><div class="contact-key">GitHub</div><div class="contact-val"><a href="https://github.com/profrao" target="_blank">github.com/profrao</a></div></div>
@@ -827,7 +827,7 @@
   <span>profrao.github.io</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   document.getElementById('hamburger').addEventListener('click', () =>
     document.getElementById('sidebar').classList.toggle('open'));
 
@@ -837,4 +837,16 @@
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.
+        e.target.classList.add('visible');
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector('#navLinks a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -30% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
